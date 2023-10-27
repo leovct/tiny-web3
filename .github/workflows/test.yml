@@ -29,6 +29,5 @@ jobs:
         id: build
 
       - name: Run Forge tests
-        run: |
-          forge test -vvv
+        run: forge test -vvvv --summary --detailed --gas-report
         id: test
