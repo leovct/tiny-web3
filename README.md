@@ -12,4 +12,4 @@ Inspired by [lil-web3](https://github.com/m1guelpf/lil-web3) by [Miguel Piedrafi
 
 ## Tiny ENS
 
-Map human-readable names like 'vitalik.eth' to machine-readable identifiers such as Ethereum addresses like '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045' and support the reverse resolution.
+Map human-readable names like `vitalik.eth` to machine-readable identifiers such as Ethereum addresses like `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045` and support the reverse resolution.
