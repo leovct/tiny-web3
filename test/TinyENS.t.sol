@@ -18,7 +18,7 @@ contract TinyENSTest is Test {
     vm.stopPrank();
   }
 
-  function testRegister() public {
+  function testRegisterNewName() public {
     vm.startPrank(alice);
     tinyENS.register('alice.eth');
     vm.stopPrank();
@@ -28,7 +28,7 @@ contract TinyENSTest is Test {
     console2.log('Alice registed alice.eth');
   }
 
-  function testFailRegister() public {
+  function testRegisterAlreadyRegisteredName() public {
     vm.startPrank(alice);
     tinyENS.register('alice.eth');
     assertEq(tinyENS.resolve('alice.eth'), alice);
@@ -37,16 +37,15 @@ contract TinyENSTest is Test {
 
     console2.log('Bob tries to register alice.eth');
     vm.startPrank(bob);
-    tinyENS.register('alice.eth');
     vm.expectRevert(TinyENS.AlreadyRegistered.selector);
-
+    tinyENS.register('alice.eth');
     assertEq(tinyENS.resolve('alice.eth'), alice);
     assertEq(tinyENS.reverse(alice), 'alice.eth');
-    assertEq(tinyENS.reverse(bob), 'axxxx');
+    assertEq(tinyENS.reverse(bob), '');
     vm.stopPrank();
   }
 
-  function testUpdate() public {
+  function testUpdateWithNewName() public {
     vm.startPrank(alice);
     tinyENS.register('alice.eth');
     assertEq(tinyENS.resolve('alice.eth'), alice);
@@ -60,7 +59,7 @@ contract TinyENSTest is Test {
     vm.stopPrank();
   }
 
-  function testFailUpdate() public {
+  function testUpdateWithAlreadyRegisteredName() public {
     vm.startPrank(alice);
     tinyENS.register('alice.eth');
     console2.log('Alice registed alice.eth');
@@ -70,8 +69,12 @@ contract TinyENSTest is Test {
     console2.log('Bob registed bob.eth');
 
     console2.log('Bob tries to update its name to alice.eth');
-    tinyENS.update('alice.eth');
     vm.expectRevert(TinyENS.AlreadyRegistered.selector);
+    tinyENS.update('alice.eth');
+    assertEq(tinyENS.resolve('alice.eth'), alice);
+    assertEq(tinyENS.reverse(alice), 'alice.eth');
+    assertEq(tinyENS.resolve('bob.eth'), bob);
+    assertEq(tinyENS.reverse(bob), 'bob.eth');
     vm.stopPrank();
   }
 }
