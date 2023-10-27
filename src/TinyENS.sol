@@ -26,7 +26,7 @@ interface ITinyENS {
 /// @author leovct
 /// @notice Map human-readable names like 'vitalik.eth' to machine-readable identifiers such as
 /// Ethereum addresses like '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045' and support the reverse
-/// resolution (or operation).
+/// resolution.
 contract TinyENS is ITinyENS {
   /// @notice Thrown when trying to register a name already registered.
   error AlreadyRegistered();
