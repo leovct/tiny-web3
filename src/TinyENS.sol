@@ -59,7 +59,9 @@ contract TinyENS is ITinyENS {
     return registry[name];
   }
 
-  function reverse(address targetAddress) external view returns (string memory) {
+  function reverse(
+    address targetAddress
+  ) external view returns (string memory) {
     return reverseRegistry[targetAddress];
   }
 }
