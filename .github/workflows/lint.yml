@@ -7,14 +7,10 @@ env:
   NODE_VERSION: '20.9'
 
 jobs:
-  check:
-    strategy:
-      fail-fast: true
-
-    name: Lint
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -22,7 +18,7 @@ jobs:
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
