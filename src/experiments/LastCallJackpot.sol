@@ -25,7 +25,7 @@ contract LastCallJackpot is ILastCallJackpot {
     event WinnerPaid(address indexed winner, uint256 amount);
 
     constructor() payable {
-        require(msg.value == 50 ether, "Fund the contract with 1000 ETH");
+        require(msg.value == 1000 ether, "Fund the contract with 1000 ETH");
         lastBlock = block.number;
     }
 

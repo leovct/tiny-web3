@@ -14,4 +14,12 @@ Inspired by [lil-web3](https://github.com/m1guelpf/lil-web3) by [Miguel Piedrafi
 
 Map human-readable names like `vitalik.eth` to machine-readable identifiers such as Ethereum addresses like `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045` and support the reverse resolution.
 
-https://github.com/leovct/tiny-web3/blob/3a0a7a9fa159e6b5a6095d4644ad8c5a726d90ff/src/TinyENS.sol#L5-L23
+https://github.com/leovct/tiny-web3/blob/main/src/TinyENS.sol#L5-L23
+
+## Experiments
+
+### Last Call Jackpot
+
+A game where the last caller, before a 10-block inactivity period, wins the entire contract's ETH balance.
+
+https://github.com/leovct/tiny-web3/blob/main/src/experiments/LastCallJackpot.sol#L5-L8

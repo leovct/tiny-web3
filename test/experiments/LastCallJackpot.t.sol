@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.21;
 
-import "../src/LastCallJackpot.sol";
+import "../../src/experiments/LastCallJackpot.sol";
 import "@forge-std/Test.sol";
 
 contract LastCallJackpotTest is Test {
