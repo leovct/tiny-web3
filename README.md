@@ -9,6 +9,7 @@ Inspired by [lil-web3](https://github.com/m1guelpf/lil-web3) by [Miguel Piedrafi
 ## Table of contents
 
 - [Tiny ENS](#tiny-ens)
+- [Experiments](#experiments)
 
 ## Tiny ENS
 
