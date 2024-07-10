@@ -1,4 +1,4 @@
-name: test
+name: ci
 
 on: push
 
@@ -6,16 +6,25 @@ env:
   FOUNDRY_PROFILE: ci
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Run linter
+        run: forge fmt --check
+        id: lint
+
   test:
-    name: Foundry project
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
+      - uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
 
