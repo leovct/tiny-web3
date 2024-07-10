@@ -14,9 +14,8 @@ jobs:
         with:
           version: nightly
 
-      - name: Run linter
+      - name: Run linter (check mode)
         run: forge fmt --check
-        id: lint
 
   test:
     runs-on: ubuntu-latest
@@ -29,12 +28,10 @@ jobs:
         with:
           version: nightly
 
-      - name: Run Forge build
+      - name: Build contracts
         run: |
           forge --version
           forge build --sizes
-        id: build
 
-      - name: Run Forge tests
+      - name: Run tests
         run: forge test -vvvv --summary --detailed --gas-report
-        id: test
