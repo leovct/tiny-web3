@@ -14,7 +14,7 @@ contract TinyENSTest is Test {
     function setUp() public {
         vm.startPrank(owner);
         tinyENS = new TinyENS();
-        console2.log("TinyENS deployed");
+        console.log("TinyENS deployed");
         vm.stopPrank();
     }
 
@@ -25,7 +25,7 @@ contract TinyENSTest is Test {
 
         assertEq(tinyENS.resolve("alice.eth"), alice);
         assertEq(tinyENS.reverse(alice), "alice.eth");
-        console2.log("Alice registed alice.eth");
+        console.log("Alice registed alice.eth");
     }
 
     function test_RegisterAlreadyRegisteredName() public {
@@ -33,9 +33,9 @@ contract TinyENSTest is Test {
         tinyENS.register("alice.eth");
         assertEq(tinyENS.resolve("alice.eth"), alice);
         assertEq(tinyENS.reverse(alice), "alice.eth");
-        console2.log("Alice registed alice.eth");
+        console.log("Alice registed alice.eth");
 
-        console2.log("Bob tries to register alice.eth");
+        console.log("Bob tries to register alice.eth");
         vm.startPrank(bob);
         vm.expectRevert(TinyENS.AlreadyRegistered.selector);
         tinyENS.register("alice.eth");
@@ -50,25 +50,25 @@ contract TinyENSTest is Test {
         tinyENS.register("alice.eth");
         assertEq(tinyENS.resolve("alice.eth"), alice);
         assertEq(tinyENS.reverse(alice), "alice.eth");
-        console2.log("Alice registed alice.eth");
+        console.log("Alice registed alice.eth");
 
         tinyENS.register("alice22.eth");
         assertEq(tinyENS.resolve("alice22.eth"), alice);
         assertEq(tinyENS.reverse(alice), "alice22.eth");
-        console2.log("Alice updated its name to alice22.eth");
+        console.log("Alice updated its name to alice22.eth");
         vm.stopPrank();
     }
 
     function test_UpdateWithAlreadyRegisteredName() public {
         vm.startPrank(alice);
         tinyENS.register("alice.eth");
-        console2.log("Alice registed alice.eth");
+        console.log("Alice registed alice.eth");
 
         vm.startPrank(bob);
         tinyENS.register("bob.eth");
-        console2.log("Bob registed bob.eth");
+        console.log("Bob registed bob.eth");
 
-        console2.log("Bob tries to update its name to alice.eth");
+        console.log("Bob tries to update its name to alice.eth");
         vm.expectRevert(TinyENS.AlreadyRegistered.selector);
         tinyENS.update("alice.eth");
         assertEq(tinyENS.resolve("alice.eth"), alice);

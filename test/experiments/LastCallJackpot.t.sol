@@ -20,7 +20,7 @@ contract LastCallJackpotTest is Test {
         // Deploy contract.
         vm.startPrank(owner);
         lastCallJackpot = new LastCallJackpot{value: 1000 ether}();
-        console2.log("LastCallJackpot deployed");
+        console.log("LastCallJackpot deployed");
         vm.stopPrank();
     }
 
@@ -34,7 +34,7 @@ contract LastCallJackpotTest is Test {
         assertEq(lastCallJackpot.lastCaller(), alice);
         assertEq(address(lastCallJackpot).balance, 1001 ether);
         assertEq(alice.balance, 999 ether);
-        console2.log("Alice calls the contract");
+        console.log("Alice calls the contract");
     }
 
     // This is another test to make sure that one can win the jackpot according to the rules.
@@ -50,11 +50,11 @@ contract LastCallJackpotTest is Test {
         assertEq(lastCallJackpot.lastCaller(), alice);
         assertEq(address(lastCallJackpot).balance, 1001 ether);
         assertEq(alice.balance, 999 ether);
-        console2.log("Alice calls the contract");
+        console.log("Alice calls the contract");
 
         // 10 blocks have passed without anyone calling the contract.
         vm.roll(bn + 10);
-        console2.log("10 blocks have passed");
+        console.log("10 blocks have passed");
 
         // Bob calls the contract and Alice wins the jackpot.
         vm.startPrank(bob);
@@ -63,11 +63,11 @@ contract LastCallJackpotTest is Test {
 
         assertEq(lastCallJackpot.lastBlock(), block.number);
         assertEq(lastCallJackpot.lastCaller(), bob);
-        console2.log("Bob calls the contract");
+        console.log("Bob calls the contract");
 
         assertEq(address(lastCallJackpot).balance, 0 ether);
         assertEq(alice.balance, 999 ether + 1_001 ether + 1 ether);
-        console2.log("Alice wins the jackpot");
+        console.log("Alice wins the jackpot");
     }
 
     // This is another test to make sure that one can only win the jackpot if nobody called the contract for 10 blocks.
@@ -84,11 +84,11 @@ contract LastCallJackpotTest is Test {
         assertEq(lastCallJackpot.lastCaller(), alice);
         assertEq(address(lastCallJackpot).balance, 1001 ether);
         assertEq(alice.balance, 999 ether);
-        console2.log("Alice calls the contract");
+        console.log("Alice calls the contract");
 
         // 9 blocks have passed without anyone calling the contract.
         vm.roll(bn + 9);
-        console2.log("9 blocks have passed");
+        console.log("9 blocks have passed");
 
         // Bob calls the contract and nobody wins the jackpot.
         vm.startPrank(bob);
@@ -99,7 +99,7 @@ contract LastCallJackpotTest is Test {
         assertEq(lastCallJackpot.lastCaller(), bob);
         assertEq(address(lastCallJackpot).balance, 1002 ether);
         assertEq(bob.balance, 999 ether);
-        console2.log("Bob calls the contract");
-        console2.log("Nobody wins the jackpot");
+        console.log("Bob calls the contract");
+        console.log("Nobody wins the jackpot");
     }
 }
