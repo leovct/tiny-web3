@@ -2,9 +2,6 @@ name: ci
 
 on: push
 
-env:
-  FOUNDRY_PROFILE: ci
-
 jobs:
   lint:
     runs-on: ubuntu-latest
